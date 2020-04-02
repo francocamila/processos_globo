@@ -1,8 +1,6 @@
 from django.db import models
-
 # Create your models here.
 from django.conf import settings
-from django.db import models
 from django.utils import timezone
 
 
@@ -11,10 +9,10 @@ class Processos(models.Model):
     classe = models.TextField()
     numero = models.TextField()
     descricao = models.TextField()
-    incidente_id = models.TextField()
-    data_atualizacao = models.TextField()
-    descricao_atualizacao = models.TextField()
-    emails = models.EmailField()
+    incidente_id = models.TextField(default="id")
+    data_atualizacao = models.TextField(default="02/04/2020")
+    descricao_atualizacao = models.TextField(default="desc_at")
+    emails = models.TextField(default="globomonitoracao@gmail.com")
     #created_date = models.DateTimeField(default=timezone.now)
     #published_date = models.DateTimeField(blank=True, null=True)
 
