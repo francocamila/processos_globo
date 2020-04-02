@@ -149,34 +149,60 @@ tr {
   </form>
 </div>
 
+
 <div id="Processos" class="tabcontent">
-    <div class="container">
-      <div class="table-responsive"> 
-        {% for processo in processos %}
-          <div>
-            <p>data atualizacao: {{ processos.data_atualizacao }}</p>
-            <h2><a href="">{{ processos.descricao }}</a></h2>
-            <p>{{ processos.classe|linebreaksbr }}</p>
-          </div>
-        {% endfor %}
-            </div> 
-      </div>
-      </div> 
-</div>          
+  <div class="container">
+    <div class="table-responsive">
+        <div id="resultados_table">
+          </div> 
+    </div>
+    </div> 
+</div> 
+<script>
+$.ajax({
+  url:"resultados.csv",
+  dataType:"text",
+  success:function(data)
+    {
+      var resultados_data = data.split(/\r?\n|\r/);
+      var table_data = '<table class="table table-bordered table-striped">';
+      for(var count = 0; count<resultados_data.length; count++)
+      {
+        var cell_data = resultados_data[count].split(",");
+        table_data += '<tr>';
+        for(var cell_count=1; cell_count<cell_data.length; cell_count++)
+        {
+          if(count === 0)
+          {
+            table_data += '<th>'+cell_data[cell_count]+'</th>';
+          }
+          else
+          {
+            table_data += '<td>'+cell_data[cell_count]+'</td>';
+          }
+        }
+        table_data += '</tr>';
+      }
+      table_data += '</table>';
+      $('#resultados_table').html(table_data);
+    }
+    });
+</script>
+              
 
 <script>
 function tipo_de_cadastro(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+var i, tabcontent, tablinks;
+tabcontent = document.getElementsByClassName("tabcontent");
+for (i = 0; i < tabcontent.length; i++) {
+  tabcontent[i].style.display = "none";
+}
+tablinks = document.getElementsByClassName("tablinks");
+for (i = 0; i < tablinks.length; i++) {
+  tablinks[i].className = tablinks[i].className.replace(" active", "");
+}
+document.getElementById(cityName).style.display = "block";
+evt.currentTarget.className += " active";
 }
 </script>
 

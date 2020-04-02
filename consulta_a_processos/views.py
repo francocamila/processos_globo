@@ -27,9 +27,13 @@ def cadastro_de_processos(request):
             numero = request.POST.get("numero", None)
             descricao = request.POST.get("descricao", None)
             emails = request.POST.get("emails", None)
-            incidente_id = get_incidente_id(classe, numero)
-            data_atualizacao = get_data_atualizacao(incidente_id)
-            descricao_atualizacao = get_descricao_atualizacao(incidente_id)
+            #incidente_id = get_incidente_id(classe, numero)
+            #data_atualizacao = get_data_atualizacao(incidente_id)
+            #descricao_atualizacao = get_descricao_atualizacao(incidente_id)
+
+            #essa função deve ser chamada de uma em uma hora:
+            atualizar_tabela_cadastro()
+
             post = form.save(commit=False)
             post.save()
         else:
@@ -39,9 +43,18 @@ def cadastro_de_processos(request):
         #descricao = request.POST.get("descricao", None)
         #emails = request.POST.get("emails", None)
     # call function
-        
-
     qs = Processos.objects.all()
     with open('lista_de_processos.csv', 'wb') as csv_file:
         write_csv(qs, csv_file)
     return render(request, 'consulta_a_processos/cadastro_de_processos.html', {})        
+
+    def show_table(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="resultados.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
+        writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
+
+    return response

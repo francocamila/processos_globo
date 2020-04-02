@@ -19,27 +19,45 @@ def get_incidente_id(classe, numero):
 
     return incidente_id
 
-def get_data_atualizacao(incidente_id):
+def atualizar_tabela_cadastro(classe, numero):
+    arquivo_processos = "C:\\Users\\pedro\\Desktop\\processos_app\\lista_de_processos.csv"
+    processos_df = pd.read_csv(arquivo_processos)
+
+    datasets = []
+    headings = ['Classe', 'Número', 'ID', 'Descrição', 'Data da Última Atualização', 'Descrição da Última Atualização', 'E-mail']
+    datasets.append(headings)
 
     client = requests.session()
-    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
-    response_andamento = client.get(url)
-    print("- - - Get data atualização")
-    html_page = response_andamento.content
-    
-    soup = BeautifulSoup(html_page, 'html.parser')
-    
-    andamento_data = soup.find("div", {"class": "andamento-data"}).get_text()
-    return andamento_data
 
-def get_descricao_atualizacao(incidente_id):
-
-    client = requests.session()
-    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
-    response_andamento = client.get(url)
-    print("- - - Get descricao atualizacao")
-    html_page = response_andamento.content
+    try:
+        for index, row in processos_df.iterrows():
+            classe = row.classe
+            numero = str(row.numero)
+        
+            incidente_id = get_incidente_id(classe, numero)
+            print("- - - Get incidente number")
+            url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
+            response_andamento = client.get(url)
+            print("- - - Get incidente")
+            html_page = response_andamento.content
     
-    soup = BeautifulSoup(html_page, 'html.parser')
-    andamento_nome = soup.find("h5", {"class": "andamento-nome"}).get_text()    
-    return andamento_nome
+            soup = BeautifulSoup(html_page, 'html.parser')
+    
+            andamento_data = soup.find("div", {"class": "andamento-data"}).get_text()
+            andamento_nome = soup.find("h5", {"class": "andamento-nome"}).get_text()
+    
+            dataset = [classe, numero, incidente_id, row.descricao, andamento_data, andamento_nome, row.emails]
+            datasets.append(dataset)
+
+    except Exception as e:
+        print("Erro no scrapping!")
+        print(e)
+
+    headers = datasets.pop(0)
+    export_df = DataFrame(datasets, columns=headers)
+    filename = "C:\\Users\\pedro\\Desktop\\processos_app\\resultados.csv"
+    export_df.to_csv(filename,
+			    index = False,
+			    sep = ',',
+			    encoding = 'utf-8'
+		    )
