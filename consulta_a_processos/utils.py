@@ -19,7 +19,33 @@ def get_incidente_id(classe, numero):
 
     return incidente_id
 
-def atualizar_tabela_cadastro(classe, numero):
+
+def get_data_atualizacao(incidente_id):
+
+    client = requests.session()
+    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
+    response_andamento = client.get(url)
+    print("- - - Get data atualização")
+    html_page = response_andamento.content
+
+    soup = BeautifulSoup(html_page, 'html.parser')
+
+    andamento_data = soup.find("div", {"class": "andamento-data"}).get_text()
+    return andamento_data
+
+def get_descricao_atualizacao(incidente_id):
+
+    client = requests.session()
+    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
+    response_andamento = client.get(url)
+    print("- - - Get descricao atualizacao")
+    html_page = response_andamento.content
+
+    soup = BeautifulSoup(html_page, 'html.parser')
+    andamento_nome = soup.find("h5", {"class": "andamento-nome"}).get_text()    
+    return andamento_nome 
+
+def atualizar_tabela_cadastro():
     arquivo_processos = "C:\\Users\\pedro\\Desktop\\processos_app\\lista_de_processos.csv"
     processos_df = pd.read_csv(arquivo_processos)
 
@@ -61,3 +87,4 @@ def atualizar_tabela_cadastro(classe, numero):
 			    sep = ',',
 			    encoding = 'utf-8'
 		    )
+

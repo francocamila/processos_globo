@@ -6,4 +6,4 @@ class ProcessosForm(forms.ModelForm):
 
     class Meta:
         model = Processos
-        fields = ('classe', 'numero', 'descricao', 'emails',)
+        fields = ('classe', 'numero', 'descricao', 'incidente_id', 'data_atualizacao', 'descricao_atualizacao', 'emails',)
