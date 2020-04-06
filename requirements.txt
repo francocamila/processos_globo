@@ -2,6 +2,7 @@ Django~=2.2.4
 psycopg2>=2.7,<3.
 django-environ==0.4.4
 django-queryset-csv==1.0.2
+pandas
 beautifulsoup4>=4.8.2
 requests>=2.23.0
 urllib3==1.22
