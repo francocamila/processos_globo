@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; font-size: 25px;
 }
 
 * {
@@ -18,21 +18,8 @@ body {
   padding: 16px;
   background-color: white;
 }
+h1 { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 38px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 38px; } h3 { font-family: monospace; font-size: 14px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 14px; } p { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 25px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
 
 /* Overwrite default styles of hr */
 hr {
@@ -40,17 +27,6 @@ hr {
   margin-bottom: 25px;
 }
 
-/* Set a style for the submit button */
-.registerbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
 
 .registerbtn:hover {
   opacity: 1;
@@ -86,16 +62,6 @@ a {
   font-size: 17px;
 }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
 /* Style the tab content */
 .tabcontent {
   display: none;
@@ -108,86 +74,72 @@ tr {
   text-align: center;
 }
 
+input[type=button], input[type=reset] {
+  background-color:rgb(85, 133, 206);
+  border: none;
+  color: rgb(121, 128, 233);
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  font-size: 25px;
+  cursor: pointer;
+
+}
+  input[type=text] {
+    background-color:transparent;
+    border:none;
+    border-bottom: 3px solid #2F4454;
+    color: black;
+  }
+
+
 </style>
 </head>
+<center>
+{% load static %}
+<img src="{% static "consulta_a_processos/logo_blue.png" %}" style="width:10%" >    
+
+
+<h1 style="color:rgb(85, 133, 206)" >Cadastre um novo processo</h1><br />
+<br />
+<br />
 <body>
 
-<h1>Cadastre um novo processo</h1>
 <p>Use esse formulário para cadastrar um novo processo para acompanhamento.</p>
 <hr>
 
-<div class="tab">
-  <button class="tablinks" onclick="tipo_de_cadastro(event, 'Link')">Cadastro de Processos</button>
-  <button class="tablinks" onclick="tipo_de_cadastro(event, 'Processos')">Processos Cadastrados</button>
-</div>
-
-
-<div id="Link" class="tabcontent">
 
       <div class="container">
         <form method="POST" action="">
           {% csrf_token %}
           {{ form.as_p }}
 
-        <label for="classe"><b>Classe do Processo</b></label>
+        <label for="classe"><b>Classe do Processo:</b></label>&emsp;&emsp;
         <input type="text" placeholder="Digite a classe do processo: AC, ADI, ADPF..." name="classe" required>
-  
-        <label for="numero"><b>Número do Processo</b></label>
+        <br />
+        <br />
+        <label for="numero"><b>Número do Processo:</b></label>&emsp;&emsp;
         <input type="text" placeholder="Digite o número do processo" name="numero" required>
-  
-        <label for="descricao"><b>Descrição do Processo</b></label>
+        <br />
+        <br />
+        <label for="descricao"><b>Descrição do Processo:</b></label>&emsp;&emsp;
         <input type="text" placeholder="Digite uma descrição sucinta para o processo" name="descricao" required>
-  
-        <label for="emails"><b>E-mails dos Destinatários</b></label>
-        <input type="text" placeholder="Digite os e-mails de quem receberá atualizações desse processo" name="emails" required>
+        <br />
+        <br />
+        <label for="emails"><b>E-mail do Destinatário:</b></label>&emsp;&emsp;
+        <input type="text" placeholder="Digite o e-mail de quem receberá atualizações desse processo" name="emails" required>
         <hr>
-  
+        <br />
         {% csrf_token %}
         <button type="submit" name="run_script">Cadastrar</button>
     </div>
     </div>
   </form>
 </div>
+</center>
 
 
-<div id="Processos" class="tabcontent">
-  <div class="container">
-    <div class="table-responsive">
-        <div id="resultados_table">
-          </div> 
-    </div>
-    </div> 
-</div> 
-<script>
-$.ajax({
-  url:"resultados.csv",
-  dataType:"text",
-  success:function(data)
-    {
-      var resultados_data = data.split(/\r?\n|\r/);
-      var table_data = '<table class="table table-bordered table-striped">';
-      for(var count = 0; count<resultados_data.length; count++)
-      {
-        var cell_data = resultados_data[count].split(",");
-        table_data += '<tr>';
-        for(var cell_count=1; cell_count<cell_data.length; cell_count++)
-        {
-          if(count === 0)
-          {
-            table_data += '<th>'+cell_data[cell_count]+'</th>';
-          }
-          else
-          {
-            table_data += '<td>'+cell_data[cell_count]+'</td>';
-          }
-        }
-        table_data += '</tr>';
-      }
-      table_data += '</table>';
-      $('#resultados_table').html(table_data);
-    }
-    });
-</script>
+
               
 
 <script>

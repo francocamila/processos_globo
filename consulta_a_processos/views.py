@@ -13,6 +13,7 @@ from .forms import ProcessosForm
 from djqscsv import render_to_csv_response
 from djqscsv import write_csv
 import csv
+from csv import writer
 # Create your views here.
 
 @csrf_exempt 
@@ -27,17 +28,21 @@ def cadastro_de_processos(request):
             numero = request.POST.get("numero", None)
             descricao = request.POST.get("descricao", None)
             emails = request.POST.get("emails", None)
-            incidente_id = get_incidente_id(classe, numero)
-            data_atualizacao = get_data_atualizacao(incidente_id)
-            descricao_atualizacao = get_descricao_atualizacao(incidente_id)
+            #incidente_id = get_incidente_id(classe, numero)
+            #data_atualizacao = get_data_atualizacao(incidente_id)
+            #descricao_atualizacao = get_descricao_atualizacao(incidente_id)
+            #url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
             #essa função deve ser chamada de uma em uma hora:
             #atualizar_tabela_cadastro()
+            save_table(classe, numero, descricao, emails)
             post = form.save(commit=False)
             post.save()
+            
         else:
             form = ProcessosForm()
-    qs = Processos.objects.all()
-    with open('lista_de_processos.csv', 'wb') as csv_file:
-        write_csv(qs, csv_file)
+    
+    #qs = Processos.objects.all()
+    #with open('lista_de_processos.csv', 'wb') as csv_file:
+    #    write_csv(qs, csv_file)
     return render(request, 'consulta_a_processos/cadastro_de_processos.html', {})        
 

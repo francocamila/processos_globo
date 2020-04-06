@@ -6,8 +6,43 @@ import pandas as pd
 from pandas import DataFrame
 import requests
 from bs4 import BeautifulSoup
+import csv   
+from csv import writer
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def save_table(classe, numero, descricao, emails):
+    incidente_id = get_incidente_id(classe, numero)
+    client = requests.session()
+    url_find = "http://portal.stf.jus.br/processos/detalhe.asp?incidente=" + incidente_id
+    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id 
+    response_andamento = client.get(url)
+    print("- - - Get data atualização")
+    html_page = response_andamento.content
+
+    soup = BeautifulSoup(html_page, 'html.parser')
+
+    andamento_data = soup.find("div", {"class": "andamento-data"}).get_text()
+    andamento_nome = soup.find("h5", {"class": "andamento-nome"}).get_text()
+
+    #with open('resultados.csv', 'a+', newline='') as write_obj:
+    #            # Create a writer object from csv module
+    #            csv_writer = writer(write_obj)
+                # Add contents of list as last row in the csv file
+    #            csv_writer.writerow(classe, numero, incidente_id, descricao, andamento_data, andamento_nome, emails, url_find)
+    #with open('resultados_novos.csv', 'a+', newline='') as write_obj:
+                # Create a writer object from csv module
+    #            csv_writer = writer(write_obj)
+                # Add contents of list as last row in the csv file
+    #            csv_writer.writerow(classe, numero, incidente_id, descricao, andamento_data, andamento_nome, emails, url_find)
+    fields=[classe, numero, incidente_id, descricao, andamento_data, andamento_nome, emails, url_find]
+    with open(r'resultados.csv', 'a', encoding = 'utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(fields)
+    with open(r'resultados_novos.csv', 'a', encoding = 'utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(fields)
+    return
 
 def get_incidente_id(classe, numero):
     client = requests.session()
