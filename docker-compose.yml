@@ -17,13 +17,12 @@ services:
   db:
     image: postgres:9.6
     env_file: dev-env
-    restart: always
   web:
     build: .
     command: ["sh", "start.sh"]
     volumes:
       - .:/processos
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     depends_on:
       - db
