@@ -19,7 +19,6 @@ services:
     env_file: dev-env
   web:
     build: .
-    env_file: dev-env
     command: ["sh", "start.sh"]
     volumes:
       - .:/processos
