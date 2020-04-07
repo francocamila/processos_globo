@@ -1,11 +1,11 @@
 #!/bin/bash
 
-while ! pg_isready -h $POSTGRES_HOST -p $POSTGRES_PORT -q -U $POSTGRES_USER; do
-  >&2 echo "Postgres is unavailable - sleeping...";
-  sleep 5;
-done;
->&2 echo "Postgres is up - executing commands...";
-
+#while ! pg_isready -h $POSTGRES_HOST -p $POSTGRES_PORT -q -U $POSTGRES_USER; do
+#  >&2 echo "Postgres is unavailable - sleeping...";
+#  sleep 5;
+#done;
+#>&2 echo "Postgres is up - executing commands...";
+sleep 5;
 echo '======= RUNNING PIP INSTALL'
 pip install --no-cache-dir -r requirements.txt
 
