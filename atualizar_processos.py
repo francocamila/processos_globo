@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Bibliotecas para manipulacao de Dataframes (tabelas):
 import pandas as pd
 from pandas import DataFrame
