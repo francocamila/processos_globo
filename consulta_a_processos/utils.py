@@ -11,6 +11,8 @@ from csv import writer
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#Aqui tem todos os métodos do site.
+
 def save_table(classe, numero, descricao, emails):
     incidente_id = get_incidente_id(classe, numero)
     client = requests.session()

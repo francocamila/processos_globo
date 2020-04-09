@@ -5,3 +5,5 @@ myvenv
 db.sqlite3
 .DS_Store
 .csv
+procvenv
+venv

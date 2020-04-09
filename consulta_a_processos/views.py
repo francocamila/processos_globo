@@ -14,13 +14,18 @@ from djqscsv import render_to_csv_response
 from djqscsv import write_csv
 import csv
 from csv import writer
-# Create your views here.
+
+#Lógica do site: Faz um request pra model e passa para um template. 
 
 @csrf_exempt 
 def cadastro_de_processos(request):
-    form = ProcessosForm()
-    processos = Processos.objects.order_by('descricao')
-    
+
+    #Filtrando os processos por data de atualização
+    processos = Processos.objects.order_by('data_atualizacao')
+
+    #Verifica se o botão "cadastrar" foi apertado. Então salva os inputs do request, bem como os resultados 
+    #dos métodos que estão na utils.py e salva na Model. Também salva em um .csv e depois renderiza com o template.
+
     if request.method == 'POST' and 'run_script' in request.POST:
         form = ProcessosForm(request.POST)
         if form.is_valid():
@@ -28,21 +33,18 @@ def cadastro_de_processos(request):
             numero = request.POST.get("numero", None)
             descricao = request.POST.get("descricao", None)
             emails = request.POST.get("emails", None)
-            #incidente_id = get_incidente_id(classe, numero)
-            #data_atualizacao = get_data_atualizacao(incidente_id)
-            #descricao_atualizacao = get_descricao_atualizacao(incidente_id)
-            #url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
-            #essa função deve ser chamada de uma em uma hora:
-            #atualizar_tabela_cadastro()
-            save_table(classe, numero, descricao, emails)
-            post = form.save(commit=False)
-            post.save()
+            incidente_id = get_incidente_id(classe, numero)
+            data_atualizacao = get_data_atualizacao(incidente_id)
+            descricao_atualizacao = get_descricao_atualizacao(incidente_id)
+            url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
+            b4 = Processos(classe=str(classe), numero=str(numero), descricao=str(descricao), emails=str(emails), incidente_id=str(incidente_id), data_atualizacao = str(data_atualizacao), descricao_atualizacao = str(descricao_atualizacao), url = str(url))
+            b4.save() 
             
         else:
             form = ProcessosForm()
     
-    #qs = Processos.objects.all()
-    #with open('lista_de_processos.csv', 'wb') as csv_file:
-    #    write_csv(qs, csv_file)
+    qs = Processos.objects.all()
+    with open('lista_de_processos.csv', 'wb') as csv_file:
+        write_csv(qs, csv_file)
     return render(request, 'consulta_a_processos/cadastro_de_processos.html', {})        
 
