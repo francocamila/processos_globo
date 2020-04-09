@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 # Metodo para consultar cada processo do arquivo "recultados.csv":
 def atualizar_processos():
     # Leitura do arquivo com informacoes sobre os processos cadastrados:
-    processos_df = pd.read_csv('resultados.csv')
+    processos_df = pd.read_csv('lista_de_processos.csv')
     
     # Organiza a lista de processos com os processos mais recentemente atualizados primeiro:
     #processos_df['data_formatada'] = pd.to_datetime(processos_df.andamento_data)
@@ -31,7 +31,7 @@ def atualizar_processos():
 
     # Criacao de um novo Dataframe que conterá novas informações sobre os processos:
     resultados = []
-    headings = ['classe', 'numero', 'incidente_id', 'descricao', 'andamento_data', 'andamento_nome', 'destinatarios', 'url']
+    headings = ['ID', 'classe', 'numero', 'descricao', 'incidente_id', 'data_atualizacao', 'descricao_atualizacao', 'emails', 'url']
     resultados.append(headings)
 
     # Criacao de um novo Dataframe que conterá apenas os processos atualizados:
@@ -57,9 +57,9 @@ def atualizar_processos():
             novo_andamento_nome = soup.find("h5", {"class": "andamento-nome"}).get_text()
 
             # Se a ultima atualizacao for diferente da atualmente cadastrada, os novos dados serao armazenados:
-            if (novo_andamento_data != row.andamento_data) or (novo_andamento_nome != row.andamento_nome):
-                row['andamento_data'] = novo_andamento_data
-                row['andamento_nome'] = novo_andamento_nome
+            if (novo_andamento_data != row.data_atualizacao) or (novo_andamento_nome != row.descricao_atualizacao):
+                row['data_atualizacao'] = novo_andamento_data
+                row['descricao_atualizacao'] = novo_andamento_nome
 
                 # Processos atualizados vao para a tabela de updates:
                 updates.append(row)
