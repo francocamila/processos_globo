@@ -1,0 +1,1 @@
+2020-04-09 08:03:23,609 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'NoneType' object has no attribute 'get_text'

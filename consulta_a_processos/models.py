@@ -7,7 +7,7 @@ from django.utils import timezone
 # Ao adicionar uma nova classe, antes das migrações, um valor default deve ser acrescentado.
  
 class Processos(models.Model):
-    #author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+   # author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     classe = models.TextField()
     numero = models.TextField()
     descricao = models.TextField()
