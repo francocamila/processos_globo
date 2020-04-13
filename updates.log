@@ -2,3 +2,5 @@
 2020-04-09 20:05:47,674 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'Series' object has no attribute 'incidente_id'
 2020-04-09 20:11:52,038 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'Series' object has no attribute 'incidente_id'
 2020-04-09 20:18:02,881 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'Series' object has no attribute 'incidente_id'
+2020-04-09 20:28:36,359 ERROR __main__ Erro durante a atualizacao: 'Series' object has no attribute 'andamento_nome'
+2020-04-09 22:28:45,498 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'Series' object has no attribute 'andamento_data'
