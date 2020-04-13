@@ -26,8 +26,8 @@ def cadastro_de_processos(request):
     #Verifica se o botão "cadastrar" foi apertado. Então salva os inputs do request, bem como os resultados 
     #dos métodos que estão na utils.py e salva na Model. Também salva em um .csv e depois renderiza com o template.
 
+    form = ProcessosForm(request.POST)
     if request.method == 'POST' and 'run_script' in request.POST:
-        form = ProcessosForm(request.POST)
         if form.is_valid():
             classe = request.POST.get("classe", None)
             numero = request.POST.get("numero", None)
@@ -38,8 +38,11 @@ def cadastro_de_processos(request):
             descricao_atualizacao = get_descricao_atualizacao(incidente_id)
             url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
             b4 = Processos(classe=str(classe), numero=str(numero), descricao=str(descricao), emails=str(emails), incidente_id=str(incidente_id), data_atualizacao = str(data_atualizacao), descricao_atualizacao = str(descricao_atualizacao), url = str(url))
-            b4.save() 
-            
+            b4.save()
+            fields=[classe, numero, incidente_id, descricao, data_atualizacao, descricao_atualizacao, emails, url]
+            with open(r'resultados.csv', 'a', encoding = 'utf-8') as f:
+                writer = csv.writer(f)
+                writer.writerow(fields)             
         else:
             form = ProcessosForm()
     
