@@ -7,12 +7,12 @@ from django.utils import timezone
 # Ao adicionar uma nova classe, antes das migrações, um valor default deve ser acrescentado.
  
 class Processos(models.Model):
-   # author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    #author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     classe = models.TextField()
     numero = models.TextField()
     descricao = models.TextField()
     incidente_id = models.TextField(default="id", blank=True)
-    data_atualizacao = models.TextField(default="02/04/2020", blank=True, null=True)
+    data_atualizacao = models.DateTimeField(default=timezone.now, blank=True)
     descricao_atualizacao = models.TextField(default="desc_at", blank=True, null=True)
     emails = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
     url = models.TextField(default="url", blank = True)
@@ -25,3 +25,7 @@ class Processos(models.Model):
 
     def __str__(self):
         return self.descricao
+
+
+    #def get_queryset(self):
+    #    return Processos.objects.all()
