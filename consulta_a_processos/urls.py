@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.cadastro_de_processos, name='cadastro_de_processos'),
+    path('processos_list/', views.processos_list, name='processos_list'),
 ]

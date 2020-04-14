@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'consulta_a_processos',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+CRONJOBS = [
+    ('0 */1 * * *', 'consulta_a_processos.cron.atualizar_db')
+]
