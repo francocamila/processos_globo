@@ -135,17 +135,12 @@ input[type=button], input[type=reset] {
     </div>
     </div>
   </form>
+
+<div class="container">
+  <a href="{% url 'processos_list' %}">Lista de Processos</a>  
+</div>
 </div>
 </center>
-{% for processo in processos %}
-    <div>
-        <p>atualizado: {{ processo.data_atualizacao }}</p>
-        <h2><a href="">{{ processo.descricao }}</a></h2>
-        <p>{{ processo.descricao_atualizacao|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-
-
               
 
 <script>
