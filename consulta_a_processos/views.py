@@ -51,8 +51,8 @@ def cadastro_de_processos(request):
         write_csv(qs, csv_file)
     return render(request, 'consulta_a_processos/cadastro_de_processos.html', {})
 
-    def processos_list(request):
-        posts = Processos.objects.all()
-        context_dict = {'processos': posts}
-        return render(request, 'consulta_a_processos/processos_list.html', {'posts':posts})
+def processos_list(request):
+    posts = Processos.objects.all()
+    context_dict = {'processos': posts}
+    return render(request, 'consulta_a_processos/processos_list.html', {'posts':posts})
 
