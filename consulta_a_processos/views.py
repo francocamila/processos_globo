@@ -32,7 +32,7 @@ from django.contrib import messages
 #Lógica do site: Faz um request pra model e passa para um template. 
 
 @csrf_exempt 
-
+@login_required
 def cadastro_de_processos(request):
 
     #Filtrando os processos por data de atualização
@@ -70,7 +70,7 @@ def cadastro_de_processos(request):
         write_csv(qs, csv_file)
     return render(request, 'consulta_a_processos/cadastro_de_processos.html')       
 
-
+@login_required
 #views da página de listagem dos processos:    
 def processos_list(request):
     posts = Processos.objects.filter().order_by('data_atualizacao')
