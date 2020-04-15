@@ -2,119 +2,111 @@
 <html>
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif; font-size: 25px;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-* {
-  box-sizing: border-box;
-}
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 
-/* Add padding to containers */
-.container {
-  padding: 16px;
-  background-color: white;
-}
-h1 { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 38px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 38px; } h3 { font-family: monospace; font-size: 14px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 14px; } p { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 25px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
-
-
-/* Overwrite default styles of hr */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-
-.registerbtn:hover {
-  opacity: 1;
-}
-
-/* Add a blue text color to links */
-a {
-  color: dodgerblue;
-}
-
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-  background-color: #f1f1f1;
-  text-align: center;
-}
-
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-tr {
-  text-align: center;
-}
-
-input[type=button], input[type=reset] {
-  background-color:rgb(85, 133, 206);
-  border: none;
-  color: rgb(121, 128, 233);
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  font-size: 25px;
-  cursor: pointer;
-
-}
-  input[type=text] {
-    background-color:transparent;
-    border:none;
-    border-bottom: 3px solid #2F4454;
-    color: black;
-  }
-
-  th,td{ 
-      width: 500px;
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+  
+  <style type="text/css">
+    h1
+    {
+      text-transform: uppercase;
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #797979;
+      font-size: 24px;
+      font-weight: 100;
+      text-align: center;
       padding: 20px;
-  }
+      margin: -30px -30px 30px -30px;
+    }
 
+    .topnav
+    {
+      overflow: hidden;
+      background-color: #305A72;
+    }
 
-</style>
+    .topnav a
+    {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a:hover
+    {
+      background-color: #DDD;
+      color: black;
+    }
+
+    .topnav a.active
+    {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    table
+    {
+      width: 100%;
+    }
+
+    th
+    {
+      background: #305A72;
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    td
+    {
+      color: #000000;
+      font-family: 'Open Sans Condensed', sans-serif;
+      text-align: center;
+    }
+  </style>
 </head>
-<center>
-{% load static %}
-<img src="{% static "consulta_a_processos/logo_blue.png" %}" style="width:10%" >    
 
-<h1 style="color:rgb(85, 133, 206)" >Lista de Processos Cadastrados</h1><br />
-<br />
-<br />
 <body>
-<div class="container">
-    <table style="width:100%">
-        <table align="center">
+  <div class="topnav">
+    <a href="/">Cadastrar Processos</a>
+    <a class="active" href="{% url 'processos_list' %}">Lista de Processos</a>
+  </div>
+
+  <div>
+    <h1>
+      <br>
+      {% load static %}
+      <img src="{% static "consulta_a_processos/logo_blue.png" %}" style="width:10%" >    
+      <br>
+      Lista de Processos Cadastrados
+    </h1>
+  </div>
+
+  <div class="lista">
+    <table class="tabela" id="processos">
+      <thead>
         <tr>
           <th>Processo</th>
-          <th>Última Atualização</th>
-          <th>Data da última Atualização</th>
+          <th>Descrição da última atualização</th>
+          <th>Data da última atualização</th>
         </tr>
+      </thead>
+
+      <tbody>
         {% for post in posts %}
         <tr>
           <td><a href="{{post.url}}">{{ post.descricao }}</a></td>
@@ -122,13 +114,23 @@ input[type=button], input[type=reset] {
           <td>{{ post.data_atualizacao }}</td>
         </tr>
         {% endfor %}
+      </tbody>
     </table>
-
-</div>
-</center>
-<div class="container">
-    <h1><a href="/">Voltar para página inicial</a></h1>
-</div>
+  </div>
 
 </body>
+
+<script>
+  $(document).ready(function() {
+    $('#processos').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>
 </html>
