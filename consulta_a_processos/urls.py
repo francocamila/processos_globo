@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.login_user, name='login_user'),
     path('submit', views.submit_login, name='submit_login'),
     path('processos_list/delete/<process_id>', views.delete_process),
+    path("logout", views.logout_request, name="logout"),
 ]
