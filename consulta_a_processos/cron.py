@@ -7,8 +7,6 @@ sys.path.append('/processos/consulta_a_processos/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'processos.settings'
 from django.conf import settings
 
-from  main.models import Processos
-
 logger = get_task_logger(__name__)
 
 import re
