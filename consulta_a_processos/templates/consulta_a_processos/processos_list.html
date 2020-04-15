@@ -156,13 +156,38 @@
         "pageLength": 50,
         dom: 'Bfrtip',
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5',
-            exportOptions: {
-                    columns: [ 0, 1, 2 ]
-                }
+          {
+            extend: 'copyHtml5',
+            exportOptions:
+            {
+              columns: [ 0, 1, 2 ]
+            }
+          },
+          
+          {
+            extend: 'excelHtml5',
+            exportOptions:
+            {
+              columns: [ 0, 1, 2 ]
+            }
+          },
+
+          {
+            extend: 'csvHtml5',
+            exportOptions:
+            {
+              columns: [ 0, 1, 2 ]
+            }
+          },
+
+          {
+            extend: 'pdfHtml5',
+            exportOptions:
+            {
+              columns: [ 0, 1, 2 ]
+            }
+          },
+          'colvis'
         ]
     } );
 } );
