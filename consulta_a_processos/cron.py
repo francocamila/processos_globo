@@ -38,3 +38,28 @@ def atualizar_db():
             update.save()
             incidente_string = ""
     return
+
+def get_data_atualizacao(incidente_id):
+
+    client = requests.session()
+    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
+    response_andamento = client.get(url)
+    print("- - - Get data atualização")
+    html_page = response_andamento.content
+
+    soup = BeautifulSoup(html_page, 'html.parser')
+
+    andamento_data = soup.find("div", {"class": "andamento-data"}).get_text()
+    return andamento_data
+
+def get_descricao_atualizacao(incidente_id):
+
+    client = requests.session()
+    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
+    response_andamento = client.get(url)
+    print("- - - Get descricao atualizacao")
+    html_page = response_andamento.content
+
+    soup = BeautifulSoup(html_page, 'html.parser')
+    andamento_nome = soup.find("h5", {"class": "andamento-nome"}).get_text()    
+    return andamento_nome 
