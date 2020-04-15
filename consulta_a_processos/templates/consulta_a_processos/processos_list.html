@@ -18,94 +18,24 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-  
-  <style type="text/css">
-    h1
-    {
-      text-transform: uppercase;
-      font-family: 'Open Sans Condensed', sans-serif;
-      color: #797979;
-      font-size: 24px;
-      font-weight: 100;
-      text-align: center;
-      padding: 20px;
-      margin: -30px -30px 30px -30px;
-    }
 
-    .topnav
-    {
-      overflow: hidden;
-      background-color: #305A72;
-    }
+  <!--Arquivos CSS locais-->
+  <link rel='stylesheet' type='text/css' href='topnav.css'>
+  <link rel='stylesheet' type='text/css' href='processos_list.css'>
 
-    .topnav a
-    {
-      float: left;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-size: 17px;
-    }
-
-    .topnav a:hover
-    {
-      background-color: #DDD;
-      color: black;
-    }
-
-    .topnav a.active
-    {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    table
-    {
-      width: 100%;
-    }
-
-    th
-    {
-      background: #305A72;
-      font-family: 'Open Sans Condensed', sans-serif;
-      color: #FFFFFF;
-      text-align: center;
-    }
-
-    td
-    {
-      color: #000000;
-      font-family: 'Open Sans Condensed', sans-serif;
-      text-align: center;
-    }
-
-    td a 
-    {
-      cursor: pointer;
-      display: inline-block;
-      margin: 0 5px;
-      min-width: 24px;
-    }    
-
-    td a.deletar
-    {
-        color: #E34724;
-    }
-
-    td a.editar
-    {
-        color: #FFC107;
-    }
-  </style>
 </head>
 
 <body>
-  <div class="topnav">
-    <a href="{% url 'cadastro_de_processos' %}">Cadastrar Processos</a>
-    <a class="active" href="{% url 'processos_list' %}">Lista de Processos</a>
-  </div>
+  <!--Menu superior-->
+  <ul class="topnav">
+    <li><a href="{% url 'cadastro_de_processos' %}">Cadastrar Processos</a></li>
+    <li class="active"><a href="{% url 'processos_list' %}">Lista de Processos</a></li>
+    {% if request.user %}
+    <li class="logout"><a href="{% url 'logout' %}">Logout</a></li>
+    {% endif%}
+  </ul>
 
+  <!--Titulo e logo da Globo-->
   <div>
     <h1>
       <br>
@@ -116,6 +46,7 @@
     </h1>
   </div>
 
+  <!--Tabela-->
   <div class="lista">
     <table class="tabela" id="processos">
       <thead>

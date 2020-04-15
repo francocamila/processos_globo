@@ -1,0 +1,37 @@
+table
+{
+  width: 100%;
+}
+
+th
+{
+  background: #305A72;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+td
+{
+  color: #000000;
+  font-family: 'Open Sans Condensed', sans-serif;
+  text-align: center;
+}
+
+td a 
+{
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+}    
+
+td a.deletar
+{
+    color: #E34724;
+}
+
+td a.editar
+{
+    color: #FFC107;
+}

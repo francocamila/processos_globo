@@ -1,0 +1,55 @@
+/* Titulo e logo da Globo */
+h1
+{
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #797979;
+  font-size: 24px;
+  font-weight: 100;
+  text-align: center;
+  padding: 20px;
+  margin: -30px -30px 30px -30px;
+}
+
+/* Menu de navegacao superior */
+.topnav
+{
+  overflow: hidden;
+  background-color: #305A72;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topnav li {
+  float: left;
+}
+
+.topnav a
+{
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topnav a:hover
+{
+  background-color: #DDD;
+  color: black;
+}
+
+.topnav li.active
+{
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav li.logout
+{
+  background-color: #BF260A;
+  color: white;
+  float: right;
+}
