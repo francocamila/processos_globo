@@ -133,7 +133,6 @@
           <td><a href="{{post.url}}">{{ post.descricao }}</a></td>
           <td>{{ post.descricao_atualizacao }}</td>
           <td>{{ post.data_atualizacao }}</td>
-
           <td>
             <a class="editar" title="Editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
             <a class="deletar" title="Deletar" data-toggle="tooltip" href="delete/{{ post.id }}" id = '{{post.id}}'><i class="material-icons">&#xE872;</i></a>
@@ -163,7 +162,7 @@
               columns: [ 0, 1, 2 ]
             }
           },
-          
+
           {
             extend: 'excelHtml5',
             exportOptions:
@@ -187,7 +186,6 @@
               columns: [ 0, 1, 2 ]
             }
           },
-          'colvis'
         ]
     } );
 } );
