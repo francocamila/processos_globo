@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -20,8 +21,8 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 
   <!--Arquivos CSS locais-->
-  <link rel='stylesheet' type='text/css' href='../css/topnav.css'>
-  <link rel='stylesheet' type='text/css' href='../css/processos_list.css'>
+  <link rel='stylesheet' type='text/css' href="{% static "css/topnav.css" %}">
+  <link rel='stylesheet' type='text/css' href="{% static "css/processos_list.css" %}">
 
 </head>
 
@@ -39,8 +40,7 @@
   <div>
     <h1>
       <br>
-      {% load static %}
-      <img src="{% static "consulta_a_processos/logo_blue.png" %}" style="width:10%" >    
+      <img src="{% static "img/logo_blue.png" %}" style="width:10%" >    
       <br>
       Lista de Processos Cadastrados
     </h1>
