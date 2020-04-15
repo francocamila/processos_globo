@@ -28,6 +28,9 @@ from datetime import datetime
 from django.contrib.auth import authenticate, login
 #para retornar erro
 from django.contrib import messages
+#login required:
+from django.contrib.auth.decorators import login_required
+
 
 #Lógica do site: Faz um request pra model e passa para um template. 
 
