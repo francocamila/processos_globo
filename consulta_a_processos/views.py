@@ -92,7 +92,8 @@ def submit_login(request):
         else:
             messages.error(request, 'Usuário ou senha inválido.')
     return redirect('/')
-
+    
+@login_required
 def delete_process(request, process_id):
     process_id = int(process_id)
     try:
