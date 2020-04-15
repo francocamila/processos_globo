@@ -1,3 +1,5 @@
+import sys
+sys.setrecursionlimit(1500)
 from django.shortcuts import render, redirect
 from .models import Processos
 from django.http import HttpResponse
@@ -25,11 +27,12 @@ import re
 #para converter string para datetime
 from datetime import datetime
 #authenticator:
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 #para retornar erro
 from django.contrib import messages
 #login required:
 from django.contrib.auth.decorators import login_required
+#logout
 
 
 #Lógica do site: Faz um request pra model e passa para um template. 
@@ -105,3 +108,8 @@ def delete_process(request, process_id):
         return redirect('/processos_list/')
     process_sel.delete()
     return redirect('/processos_list/')
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "Usuário deslogado com sucesso!")
+    return redirect("/")

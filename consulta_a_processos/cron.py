@@ -10,7 +10,7 @@ from django.conf import settings
 #logger = get_task_logger(__name__)
 
 import re
-from models import Processos
+from consulta_a_processos.models import Processos
 
 
 def atualizar_db():
