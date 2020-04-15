@@ -16,24 +16,24 @@ from .models import Processos
 def atualizar_db():
     incidentes = Processos.objects.all().values('incidente_id')
         #inicia-se uma string vazia
-        incidente_string = ""
+    incidente_string = ""
         #então pra cada incidente filtrado:
-        for incidente in incidentes:
+    for incidente in incidentes:
             #acha-se apenas os números do queryset:
-            for ele in re.findall(r'\b\d+\b', str(incidente)):
-                #transforma-se esse a lista resultante em string:
-                incidente_string += ele
+        for ele in re.findall(r'\b\d+\b', str(incidente)):
+            #transforma-se esse a lista resultante em string:
+            incidente_string += ele
                 #atualiza-se a data e o andamento dos processos:                
-                data_atualizacao = get_data_atualizacao(incidente_string)
-                print(data_atualizacao)
-                descricao_atualizacao = get_descricao_atualizacao(incidente_string)
-                print(descricao_atualizacao)
+            data_atualizacao = get_data_atualizacao(incidente_string)
+            print(data_atualizacao)
+            descricao_atualizacao = get_descricao_atualizacao(incidente_string)
+            print(descricao_atualizacao)
                 #então, pega-se cada incidente
-                update = Processos.objects.get(incidente_id=incidente_string)
+            update = Processos.objects.get(incidente_id=incidente_string)
                 #atualiza-se os fields na database
-                update.data_atualizacao = data_atualizacao
-                update.descricao_atualizacao = descricao_atualizacao
+            update.data_atualizacao = data_atualizacao
+            update.descricao_atualizacao = descricao_atualizacao
                 #fields são salvos na database
-                update.save()
-                incidente_string = ""
+            update.save()
+            incidente_string = ""
     return
