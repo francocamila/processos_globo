@@ -41,7 +41,7 @@ def cadastro_de_processos(request):
             print(data_atualizacao_queryset)
             descricao_atualizacao = get_descricao_atualizacao(incidente_id)
             url = "http://portal.stf.jus.br/processos/detalhe.asp?incidente=" + incidente_id
-            b4 = Processos(classe=str(classe), numero=str(numero), descricao=str(descricao), emails=str(emails), incidente_id=str(incidente_id), data_atualizacao = data_atualizacao, descricao_atualizacao = str(descricao_atualizacao), url = str(url))
+            b4 = Processos(classe=str(classe), numero=str(numero), descricao=str(descricao), emails=str(emails), incidente_id=str(incidente_id), data_atualizacao = str(data_atualizacao), descricao_atualizacao = str(descricao_atualizacao), url = str(url))
             b4.save()
             fields=[classe, numero, incidente_id, descricao, data_atualizacao, descricao_atualizacao, emails, url]
             with open(r'resultados.csv', 'a', encoding = 'utf-8') as f:
