@@ -35,7 +35,7 @@ from django.contrib.auth.decorators import login_required
 #Lógica do site: Faz um request pra model e passa para um template. 
 
 @csrf_exempt 
-@login_required
+@login_required(login_url='/')
 def cadastro_de_processos(request):
 
     #Filtrando os processos por data de atualização
@@ -73,7 +73,7 @@ def cadastro_de_processos(request):
         write_csv(qs, csv_file)
     return render(request, 'consulta_a_processos/cadastro_de_processos.html')       
 
-@login_required
+@login_required(login_url='/')
 #views da página de listagem dos processos:    
 def processos_list(request):
     posts = Processos.objects.filter().order_by('data_atualizacao')
@@ -96,7 +96,7 @@ def submit_login(request):
             messages.error(request, 'Usuário ou senha inválido.')
     return redirect('/')
     
-@login_required
+@login_required(login_url='/')
 def delete_process(request, process_id):
     process_id = int(process_id)
     try:
@@ -104,4 +104,4 @@ def delete_process(request, process_id):
     except Processos.DoesNotExist:
         return redirect('/processos_list/')
     process_sel.delete()
-    return redirect('/processos_list')
+    return redirect('/processos_list/')
