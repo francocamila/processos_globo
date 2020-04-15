@@ -1,15 +1,4 @@
 # -*- coding: utf-8 -*-
-from .utils import *
-from django.template import loader
-from django.views.generic import ListView, CreateView
-from django.urls import reverse_lazy
-from django.utils import timezone
-from django.views.decorators.csrf import csrf_exempt
-from .forms import ProcessosForm
-from djqscsv import render_to_csv_response
-from djqscsv import write_csv
-import csv
-from csv import writer
 import re
 from .models import Processos
 
