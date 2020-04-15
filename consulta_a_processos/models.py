@@ -13,7 +13,7 @@ class Processos(models.Model):
     numero = models.TextField()
     descricao = models.TextField()
     incidente_id = models.TextField(default="id", blank=True)
-    data_atualizacao = models.DateTimeField(default=timezone.now, blank=True)
+    data_atualizacao = models.TextField(default="15/04/2020", blank=True)
     descricao_atualizacao = models.TextField(default="desc_at", blank=True, null=True)
     emails = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
     url = models.TextField(default="url", blank = True)
