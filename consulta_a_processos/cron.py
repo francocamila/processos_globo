@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .utils import *
 from django.template import loader
 from django.views.generic import ListView, CreateView
