@@ -156,93 +156,41 @@
 </head>
 
 <body>
-  <div class="topnav">
-    <a class="active" href="{% url 'cadastro_de_processos' %}">Cadastrar Processos</a>
-    <a href="{% url 'processos_list' %}">Lista de Processos</a>
-  </div>
-
+  
   <div>
     <h1>
       <br>
       {% load static %}
       <img src="{% static "consulta_a_processos/logo_blue.png" %}" style="width:10%" >    
       <br>
-      Cadastre um novo processo
+      Monitoramento de processos do STF
     </h1>
   </div>
 
-  <form class="form-style-9" method="POST" action="">
+  <form class="form-style-9" method="POST" action="submit">
     <ul>
-      <h2>
-        Use esse formulário para cadastrar um novo processo para acompanhamento
-      </h2>
 
       {% csrf_token %}
       {{ form.as_p }}
 
       <li>
-      <select name="classe" class="field-style field-split align-left" required>
-        <option value="">Classe</option>
-        <option value="AC">AC</option>
-        <option value="ACO">ACO</option>
-        <option value="ADC">ADC</option>
-        <option value="ADI">ADI</option>
-        <option value="ADO">ADO</option>
-        <option value="ADPF">ADPF</option>
-        <option value="AI">AI</option>
-        <option value="AImp">AImp</option>
-        <option value="AO">AO</option>
-        <option value="AOE">AOE</option>
-        <option value="AP">AP</option>
-        <option value="AR">AR</option>
-        <option value="ARE">ARE</option>
-        <option value="AS">AS</option>
-        <option value="CC">CC</option>
-        <option value="Cm">Cm</option>
-        <option value="EI">EI</option>
-        <option value="EL">EL</option>
-        <option value="EP">EP</option>
-        <option value="Ext">Ext</option>
-        <option value="HC">HC</option>
-        <option value="HD">HD</option>
-        <option value="IF">IF</option>
-        <option value="Inq">Inq</option>
-        <option value="MI">MI</option>
-        <option value="MS">MS</option>
-        <option value="Pet">Pet</option>
-        <option value="PPE">PPE</option>
-        <option value="PSV">PSV</option>
-        <option value="RC">RC</option>
-        <option value="Rcl">Rcl</option>
-        <option value="RE">RE</option>
-        <option value="RHC">RHC</option>
-        <option value="RHD">RHD</option>
-        <option value="RMI">RMI</option>
-        <option value="RMS">RMS</option>
-        <option value="RvC">RvC</option>
-        <option value="SIRDR">SIRDR</option>
-        <option value="SL">SL</option>
-        <option value="SS">SS</option>
-        <option value="STA">STA</option>
-        <option value="STP">STP</option>
-        <option value="TPA">TPA</option>
-      </select>
-
-      <input type="text" class="field-style field-split align-right" placeholder="Número do processo" name="numero" required>
+      <input type="username" class="field-style field-full align-none" placeholder="Usuário:" name="username" required>
       </li>
 
       <li>
-        <input type="text" class="field-style field-full align-none" placeholder="Descrição do processo" name="descricao" required>
-      </li>
-
-      <li>
-        <input type="email" class="field-style field-full align-none" placeholder="E-mail do destinatário" name="emails" required>
+        <input type="password" class="field-style field-full align-none" placeholder="Senha:" name="password" required>
       </li>
 
       {% csrf_token %}
 
+      {% for message in messages %}
+      <div class="alert alert-danger">
+        <strong>Erro!</strong> {{ message }}
+      </div>
+      {% endfor %}
+
       <li>
-        <input type="submit" value="Cadastrar" name="run_script"/>
+        <input type="submit" value="Entrar" name="fazer_login"/>
       </li>
 
     </ul>

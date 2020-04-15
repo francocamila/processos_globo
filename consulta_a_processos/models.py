@@ -2,6 +2,7 @@ from django.db import models
 # Create your models here.
 from django.conf import settings
 from django.utils import timezone
+from django.urls import reverse
 
 # Essa classe determina o que vai ser salvo na Database. Se houverem modificações, as migrations devem ser feitas
 # Ao adicionar uma nova classe, antes das migrações, um valor default deve ser acrescentado.
@@ -12,7 +13,7 @@ class Processos(models.Model):
     numero = models.TextField()
     descricao = models.TextField()
     incidente_id = models.TextField(default="id", blank=True)
-    data_atualizacao = models.TextField(default="14/04/2020", blank=True)
+    data_atualizacao = models.DateTimeField(default=timezone.now, blank=True)
     descricao_atualizacao = models.TextField(default="desc_at", blank=True, null=True)
     emails = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
     url = models.TextField(default="url", blank = True)
@@ -25,6 +26,9 @@ class Processos(models.Model):
 
     def __str__(self):
         return self.descricao
+
+    def get_absolute_url(self):
+        return reverse('processos_edit', kwargs={'pk': self.pk})
 
 
     #def get_queryset(self):

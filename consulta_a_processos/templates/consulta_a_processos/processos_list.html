@@ -12,6 +12,8 @@
   <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/datetime-moment.js"></script>
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -82,7 +84,7 @@
 
 <body>
   <div class="topnav">
-    <a href="/">Cadastrar Processos</a>
+    <a href="{% url 'cadastro_de_processos' %}">Cadastrar Processos</a>
     <a class="active" href="{% url 'processos_list' %}">Lista de Processos</a>
   </div>
 
@@ -112,6 +114,7 @@
           <td><a href="{{post.url}}">{{ post.descricao }}</a></td>
           <td>{{ post.descricao_atualizacao }}</td>
           <td>{{ post.data_atualizacao }}</td>
+          <td><a href="delete/{{ post.id }}" class="btn btn-danger" id = '{{post.id}}'>Excluir</a></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -122,6 +125,8 @@
 
 <script>
   $(document).ready(function() {
+    $.fn.dataTable.moment( 'DD/MM/YYYY' );
+
     $('#processos').DataTable( {
         "lengthMenu": [ 10, 25, 50, 75, 100 ],
         "pageLength": 50,
