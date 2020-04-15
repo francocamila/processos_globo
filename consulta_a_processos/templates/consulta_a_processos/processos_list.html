@@ -123,6 +123,8 @@
 <script>
   $(document).ready(function() {
     $('#processos').DataTable( {
+        "lengthMenu": [ 10, 25, 50, 75, 100 ],
+        "pageLength": 50,
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',
