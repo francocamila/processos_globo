@@ -38,7 +38,7 @@ def cadastro_de_processos(request):
             data_atualizacao = get_data_atualizacao(incidente_id)
             #passando a string resultante para queryset:
             #data_atualizacao_queryset = datetime.strptime(data_atualizacao, "%d/%m/%Y").date()
-            print(data_atualizacao_queryset)
+            #print(data_atualizacao_queryset)
             descricao_atualizacao = get_descricao_atualizacao(incidente_id)
             url = "http://portal.stf.jus.br/processos/detalhe.asp?incidente=" + incidente_id
             b4 = Processos(classe=str(classe), numero=str(numero), descricao=str(descricao), emails=str(emails), incidente_id=str(incidente_id), data_atualizacao = str(data_atualizacao), descricao_atualizacao = str(descricao_atualizacao), url = str(url))
