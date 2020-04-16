@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
-
-#logger = get_task_logger(__name__)
-
+from celery import shared_task
 import re
 from consulta_a_processos.models import *
+from consulta_a_processos.utils import *
 
-
-def atualizar_db():
+@shared_task
+def hello():
     incidentes = Processos.objects.all().values('incidente_id')
         #inicia-se uma string vazia
     incidente_string = ""
@@ -31,31 +29,6 @@ def atualizar_db():
                 update.save()
                 incidente_string = ""
     except Exception as e:
-    print("Erro no update!")
-    print(e)
-    return
-
-def get_data_atualizacao(incidente_id):
-
-    client = requests.session()
-    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
-    response_andamento = client.get(url)
-    print("- - - Get data atualização")
-    html_page = response_andamento.content
-
-    soup = BeautifulSoup(html_page, 'html.parser')
-
-    andamento_data = soup.find("div", {"class": "andamento-data"}).get_text()
-    return andamento_data
-
-def get_descricao_atualizacao(incidente_id):
-
-    client = requests.session()
-    url = "http://portal.stf.jus.br/processos/abaAndamentos.asp?incidente=" + incidente_id
-    response_andamento = client.get(url)
-    print("- - - Get descricao atualizacao")
-    html_page = response_andamento.content
-
-    soup = BeautifulSoup(html_page, 'html.parser')
-    andamento_nome = soup.find("h5", {"class": "andamento-nome"}).get_text()    
-    return andamento_nome 
+        print("Erro no update!")
+        print(e)
+    

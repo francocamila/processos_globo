@@ -6,3 +6,5 @@ pandas
 beautifulsoup4>=4.8.2
 requests>=2.23.0
 django-crontab
+celery==4.2.1
+redis==2.10.6
