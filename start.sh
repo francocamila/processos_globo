@@ -9,11 +9,11 @@ sleep 5;
 echo '======= RUNNING PIP INSTALL'
 pip install --no-cache-dir -r requirements.txt
 
-echo '======= MAKING MIGRATIONS'
-python3 manage.py makemigrations
+#echo '======= MAKING MIGRATIONS'
+#python3 manage.py makemigrations
 
-echo '======= RUNNING MIGRATIONS'
-python3 manage.py migrate
+#echo '======= RUNNING MIGRATIONS'
+#python3 manage.py migrate
 
 #echo '======= COLLECTING STATIC'
 #python manage.py collectstatic --noinput
