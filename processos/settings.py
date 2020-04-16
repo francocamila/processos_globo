@@ -137,5 +137,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CRONJOBS = [
-    ('0 */1 * * *', 'consulta_a_processos.cron.atualizar_db')
+    ('35 */1 * * *', 'consulta_a_processos.cron.atualizar_db >> myscript.log 2>&1')
 ]
