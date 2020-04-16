@@ -7,4 +7,5 @@ db.sqlite3
 .csv
 procvenv
 venv
-resultados.csv
+celerybeat.pid
+celerybeat-schedule
