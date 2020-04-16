@@ -30,7 +30,7 @@ services:
     depends_on:
       - db
       - redis
-    celery:
+  celery:
     build: .
     command: celery -A proj worker -l info
     volumes:
