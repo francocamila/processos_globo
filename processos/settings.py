@@ -136,6 +136,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+CRONTAB_COMMAND_SUFFIX = '2>&1'
 CRONJOBS = [
-    ('25 */1 * * *', 'consulta_a_processos.cron.atualizar_db > /tmp/cronglog.txt 2>&1')
+    ('*/1 * * * *', 'consulta_a_processos.cron.atualizar_db', '>> /tmp/cronlog.txt'),
 ]
