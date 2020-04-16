@@ -5,7 +5,7 @@
 #  sleep 5;
 #done;
 #>&2 echo "Postgres is up - executing commands...";
-sleep 5;
+sleep 15;
 echo '======= RUNNING PIP INSTALL'
 pip install --no-cache-dir -r requirements.txt
 

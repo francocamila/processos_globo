@@ -40,7 +40,7 @@ services:
       - redis
   celery-beat:
     build: .
-    command: celery -A proj beat -l info
+    command: sleep 5; celery -A proj beat -l info
     volumes:
       - .:/processos
     depends_on:
