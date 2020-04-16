@@ -9,3 +9,4 @@ procvenv
 venv
 celerybeat.pid
 celerybeat-schedule
+lista_de_processos.csv
