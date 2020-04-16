@@ -23,6 +23,7 @@ services:
     build: .
     env_file: dev-env
     command: ["sh", "start.sh"]
+    restart: on-failure
     volumes:
       - .:/processos
     ports:
@@ -32,7 +33,8 @@ services:
       - redis
   celery:
     build: .
-    command: celery -A proj worker -l info
+    command: sleep 10;celery -A proj worker -l info
+    restart: on-failure
     volumes:
       - .:/processos
     depends_on:
@@ -41,6 +43,7 @@ services:
   celery-beat:
     build: .
     command: sleep 5; celery -A proj beat -l info
+    restart: on-failure
     volumes:
       - .:/processos
     depends_on:
