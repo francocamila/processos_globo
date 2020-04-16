@@ -7,3 +7,4 @@ import re
 
 def atualizar_db():
     print('HELLO CRON')
+    return
