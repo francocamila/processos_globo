@@ -33,7 +33,7 @@ services:
       - redis
   celery:
     build: .
-    command: sleep 10; celery -A proj worker -l info
+    command: celery -A proj worker -l info
     restart: on-failure
     volumes:
       - .:/processos
@@ -42,7 +42,7 @@ services:
       - redis
   celery-beat:
     build: .
-    command: sleep 5; celery -A proj beat -l info
+    command: celery -A proj beat -l info
     restart: on-failure
     volumes:
       - .:/processos
