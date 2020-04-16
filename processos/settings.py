@@ -138,5 +138,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CRONTAB_COMMAND_SUFFIX = '2>&1'
 CRONJOBS = [
-    ('*/1 * * * *', 'consulta_a_processos.cron.atualizar_db', '> /tmp/cronlog.txt'),
+    ('0 */1 * * *', 'consulta_a_processos.cron.atualizar_db', '>> ~/cron_job.log'),
 ]
