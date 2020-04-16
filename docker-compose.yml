@@ -17,6 +17,8 @@ services:
   db:
     image: postgres:9.6
     env_file: dev-env
+  redis:
+    image: "redis:alpine"
   web:
     build: .
     env_file: dev-env
@@ -27,3 +29,20 @@ services:
       - "80:8000"
     depends_on:
       - db
+      - redis
+    celery:
+    build: .
+    command: celery -A proj worker -l info
+    volumes:
+      - .:/processos
+    depends_on:
+      - db
+      - redis
+  celery-beat:
+    build: .
+    command: celery -A proj beat -l info
+    volumes:
+      - .:/processos
+    depends_on:
+      - db
+      - redis
