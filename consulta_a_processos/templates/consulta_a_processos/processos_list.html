@@ -5,6 +5,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!--Arquivos Javascript remoto-->
   <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -15,7 +16,9 @@
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/datetime-moment.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
 
+  <!--Arquivos CSS remotos-->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
@@ -40,7 +43,7 @@
   <div>
     <h1>
       <br>
-      <img src="{% static 'img/logo_blue.png' %}" style="width:10%" >    
+      <img src="{% static 'img/logo_blue.png' %}" style="width:10%" >
       <br>
       Lista de Processos Cadastrados
     </h1>
@@ -49,8 +52,12 @@
   <!--Tabela-->
   <div class="lista">
     <table class="display" id="processos">
+      <!--Cabecalho-->
       <thead>
         <tr>
+          <th>Classe</th>
+          <th>Número</th>
+          <th>ID do Incidente</th>
           <th>Processo</th>
           <th>Descrição da última atualização</th>
           <th>Data da última atualização</th>
@@ -58,9 +65,13 @@
         </tr>
       </thead>
 
+      <!--Resto da tabela-->
       <tbody>
         {% for post in posts %}
         <tr>
+          <td>CLASSE</td>
+          <td>NUMERO</td>
+          <td>ID INCIDENTE</td>
           <td><a href="{{post.url}}">{{ post.descricao }}</a></td>
           <td>{{ post.descricao_atualizacao }}</td>
           <td>{{ post.data_atualizacao }}</td>
@@ -78,48 +89,83 @@
 </body>
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function()
+  {
+    // Plugin para formatar data e ordenar por data:
     $.fn.dataTable.moment( 'DD/MM/YYYY' );
 
-    $('#processos').DataTable( {
-        "lengthMenu": [ 10, 25, 50, 75, 100 ],
-        "pageLength": 50,
-        "order": [[ 2, "desc" ]],
-        dom: 'Bfrtip',
-        buttons: [
-          {
-            extend: 'copyHtml5',
-            exportOptions:
-            {
-              columns: [ 0, 1, 2 ]
-            }
-          },
+    // Plugin DataTables:
+    $('#processos').DataTable(
+    {
+      dom: 'Bfrtip',
+      // Define quantidade de processos por pagina:
+      "pageLength": 50,
 
-          {
-            extend: 'excelHtml5',
-            exportOptions:
-            {
-              columns: [ 0, 1, 2 ]
-            }
-          },
+      // Define a ordem padrao da tabela:
+      "order": [[ 5, "desc" ]],
 
-          {
-            extend: 'csvHtml5',
-            exportOptions:
-            {
-              columns: [ 0, 1, 2 ]
-            }
-          },
+      // Configuracoes padroes da tabela:
+      columnDefs:
+      [
+        // Por padrao, esconde as 3 primeiras colunas:
+        {
+          visible: false,
+          targets: [ 0, 1, 2 ],
+        },
 
+        // Retira a coluna "Acoes" do botao "Column visibility":
+        {
+            targets: 6,
+            className: 'noVis'
+        }
+      ],
+
+      // Configuracao dos botoes da tabela:
+      buttons:
+      [
+        // Botao de "Column visibility":
+        {
+          extend: 'colvis',
+          columns: ':not(.noVis)',
+        },
+
+        // Botao de "Copy":
+        {
+          extend: 'copyHtml5',
+          exportOptions:
           {
-            extend: 'pdfHtml5',
-            exportOptions:
-            {
-              columns: [ 0, 1, 2 ]
-            }
-          },
-        ]
+            columns: [ 0, 1, 2, 3, 4, 5 ]
+          }
+        },
+
+        // Botao de "Excel":
+        {
+          extend: 'excelHtml5',
+          exportOptions:
+          {
+            columns: [ 0, 1, 2, 3, 4, 5 ]
+          }
+        },
+
+        // Botao de "CSV":
+        {
+          extend: 'csvHtml5',
+          exportOptions:
+          {
+            columns: [ 0, 1, 2, 3, 4, 5 ]
+          }
+        },
+
+        // Botao de "PDF":
+        {
+          extend: 'pdfHtml5',
+          exportOptions:
+          {
+            columns: [ 0, 1, 2, 3, 4, 5 ]
+          }
+        },
+      ]
     } );
-} );
+  } );
 </script>
 </html>
