@@ -103,26 +103,24 @@
   font: 12px Arial, Helvetica, sans-serif;
 }
 
-.form ul li input[type="button"]:hover, 
 .form ul li input[type="submit"]:hover
 {
   background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
   background-color: #28739E;
 }
 
-.form button
+.add_email_fields
 {
   display: inline;
   vertical-align: middle;
   cursor: pointer;
-}
-
-.add_email_fields
-{
   color: #008000;
 }
 
 .remove_email_fields
 {
+  display: inline;
+  vertical-align: middle;
+  cursor: pointer;
   color: #FF0000;
 }
