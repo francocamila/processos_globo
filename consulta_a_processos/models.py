@@ -15,7 +15,7 @@ class Processos(models.Model):
     incidente_id = models.TextField(default="id", blank=True)
     data_atualizacao = models.TextField(default="15/04/2020", blank=True)
     descricao_atualizacao = models.TextField(default="desc_at", blank=True, null=True)
-    emails = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
+    emails = models.TextField(default="processosglobobsa@gmail.com", blank=True, null=True)
     url = models.TextField(default="url", blank = True)
     #created_date = models.DateTimeField(default=timezone.now)
     #published_date = models.DateTimeField(blank=True, null=True)
