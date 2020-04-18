@@ -23,7 +23,7 @@
   min-height: 35px;
 }
 
-.form ul li  .field-style
+.form ul li .field-style
 {
   box-sizing: border-box; 
   -webkit-box-sizing: border-box;
@@ -49,7 +49,7 @@
   margin: -30px -30px 30px -30px;
 }
 
-.form ul li  .field-style:focus
+.form ul li .field-style:focus
 {
   box-shadow: 0 0 5px #B0CFE0;
   border:1px solid #B0CFE0;
@@ -57,7 +57,12 @@
 
 .form ul li .field-split
 {
-  width: 49%;
+  width: 49.5%;
+}
+
+.form ul li .field-buttons
+{
+  width: 80%;
 }
 
 .form ul li .field-full
@@ -103,4 +108,21 @@
 {
   background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
   background-color: #28739E;
+}
+
+.form button
+{
+  display: inline;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.add_email_fields
+{
+  color: #008000;
+}
+
+.remove_email_fields
+{
+  color: #FF0000;
 }
