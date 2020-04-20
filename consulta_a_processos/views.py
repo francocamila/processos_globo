@@ -54,20 +54,25 @@ def cadastro_de_processos(request):
             descricao = request.POST.get("descricao", None)
             emails = request.POST.get("emails", None)
             incidente_id = get_incidente_id(classe, numero)
-            data_atualizacao = get_data_atualizacao(incidente_id)
-            #passando a string resultante para queryset:
-            #data_atualizacao_queryset = datetime.strptime(data_atualizacao, "%d/%m/%Y").date()
-            #print(data_atualizacao_queryset)
-            descricao_atualizacao = get_descricao_atualizacao(incidente_id)
-            url = "http://portal.stf.jus.br/processos/detalhe.asp?incidente=" + incidente_id
-            b4 = Processos(classe=str(classe), numero=str(numero), descricao=str(descricao), emails=str(emails), incidente_id=str(incidente_id), data_atualizacao = str(data_atualizacao), descricao_atualizacao = str(descricao_atualizacao), url = str(url))
-            b4.save()
+            #verifica se o processo já está cadastrado no banco de dados:
+            try:
+                process_sel = Processos.objects.get(incidente_id = incidente_id)
+            except Processos.DoesNotExist:
+                data_atualizacao = get_data_atualizacao(incidente_id)
+                descricao_atualizacao = get_descricao_atualizacao(incidente_id)
+                url = "http://portal.stf.jus.br/processos/detalhe.asp?incidente=" + incidente_id
+                b4 = Processos(classe=str(classe), numero=str(numero), descricao=str(descricao), emails=str(emails), incidente_id=str(incidente_id), data_atualizacao = str(data_atualizacao), descricao_atualizacao = str(descricao_atualizacao), url = str(url))
+                b4.save()
 
-            #escrevendo uma linha em resultados.csv
-            fields=[classe, numero, incidente_id, descricao, data_atualizacao, descricao_atualizacao, emails, url]
-            with open(r'resultados.csv', 'a', encoding = 'utf-8') as f:
-                writer = csv.writer(f)
-                writer.writerow(fields)             
+                #escrevendo uma linha em resultados.csv
+                fields=[classe, numero, incidente_id, descricao, data_atualizacao, descricao_atualizacao, emails, url]
+                with open(r'resultados.csv', 'a', encoding = 'utf-8') as f:
+                    writer = csv.writer(f)
+                    writer.writerow(fields)
+                ('/cadastro_de_processos/')
+            messages.error(request, 'Processo já cadastrado.')
+            return redirect('/cadastro_de_processos/')
+                         
         else:
             form = ProcessosForm()
     #salvando todos os querysets em um csv
