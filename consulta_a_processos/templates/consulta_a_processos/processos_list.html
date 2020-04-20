@@ -78,8 +78,8 @@
           <td>{{ post.data_atualizacao }}</td>
           <td>{{ post.emails }}</td>
           <td>
-            <a class="editar" title="Editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-            <a class="deletar" title="Deletar" data-toggle="tooltip" href="delete/{{ post.id }}" id = '{{ post.id }}'><i class="material-icons">&#xE872;</i></a>
+            <a class="editar" title="Editar" data-toggle="tooltip"><i class="material-icons">edit</i></a>
+            <a class="deletar" title="Deletar" data-toggle="tooltip" href="delete/{{ post.id }}" onclick="return confirm('Tem certeza que deseja deletar esse processo?')" id = '{{ post.id }}'><i class="material-icons">&#xE872;</i></a>
           </td>
 
         </tr>
@@ -90,7 +90,7 @@
 
 </body>
 
-<script>
+<script type='text/javascript'>
   $(document).ready(function()
   {
     // Plugin para formatar data e ordenar por data:

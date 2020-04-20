@@ -5,6 +5,9 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!--Arquivos CSS remotos-->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
   <!--Arquivos CSS locais-->
   <link rel='stylesheet' type='text/css' href="{% static 'css/topnav.css' %}">
   <link rel='stylesheet' type='text/css' href="{% static 'css/cadastro_de_processos.css' %}">
@@ -88,15 +91,17 @@
         <option value="TPA">TPA</option>
       </select>
 
-      <input type="text" class="field-style field-split align-right" placeholder="Número do processo" name="numero" required>
+      <input type="number" class="field-style field-split align-right" placeholder="Número do processo" name="numero" required>
       </li>
 
       <li>
         <input type="text" class="field-style field-full align-none" placeholder="Descrição do processo" name="descricao" required>
       </li>
 
-      <li>
-        <input type="email" class="field-style field-full align-none" placeholder="E-mail do destinatário" name="emails" required>
+      <li id="email-destination">
+        <input type="email" class="field-style field-buttons align-none" placeholder="E-mail do destinatário" name="emails" required>
+        <button type="button" class="material-icons add_email_fields" onclick="add_field()">add_circle</button>
+        <button type="button" class="material-icons remove_email_fields" onclick="remove_field()">cancel</button>
       </li>
 
       {% csrf_token %}
@@ -107,6 +112,33 @@
 
     </ul>
   </form>
-
 </body>
+
+<script type='text/javascript'>
+  var i = 0;
+
+  // Funcao para adicionar campos de email:
+  function add_field()
+  {
+    var new_email_field = document.createElement("input");
+    new_email_field.setAttribute("class", "field-style field-full align-none");
+    new_email_field.setAttribute("type", "text");
+    new_email_field.setAttribute("placeholder", "E-mail do destinatário");
+    new_email_field.setAttribute("name", "emails");
+    new_email_field.required = true;
+    document.getElementById("email-destination").appendChild(new_email_field);
+    i += 1;
+  }
+
+  // Funcao para remover campos de email:
+  function remove_field()
+  {
+    if (i > 0)
+    {
+      var email_fields = document.getElementById("email-destination");
+      email_fields.removeChild(email_fields.lastChild);
+      i -= 1;
+    }
+  }
+</script>
 </html>
