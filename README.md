@@ -16,6 +16,12 @@ Para **visualizar e testar** o site, bem como suas funcionalidades, insira o seg
 docker-compose up --build -d
 ```
 
+Se já está "buildado":
+
+```sh
+docker-compose up -d
+```
+
 O site estará disponível em:
 
 http://localhost:8000
@@ -44,6 +50,13 @@ Ao cadastrar um processo que deseja acompanhar, insira um e-mail para receber at
 
 ### Debug
 
+Para ver o que está acontecendo:
+
+```sh
+docker-compose logs
+```
+
+#### Task 
 A atualização de processos ocorre a cada uma hora. A configuração de crontab pode ser modificada em "settings.py". Para mais informações, veja a [documentação do **Celery**](https://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html).
 
 Para testar a task:
@@ -58,9 +71,9 @@ python manage.py shell
 ```
 
 ```sh
-from consulta_a_processos.tasks import hello
+>> from consulta_a_processos.tasks import hello
 ```
 
 ```sh
-hello()
+>> hello()
 ```
