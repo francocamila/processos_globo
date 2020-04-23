@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
 #from django.contrib.postgres.fields import ArrayField
-from multi_email_field.fields import MultiEmailField
+#from multi_email_field.fields import MultiEmailField
 
 
 #from django.contrib.postgres.fields import ArrayField
