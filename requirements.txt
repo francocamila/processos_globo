@@ -9,3 +9,4 @@ django-crontab
 celery==4.3.0
 redis==3.2.1
 kombu==4.5.0
+django-multi-email-field
