@@ -5,6 +5,9 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!--Arquivos Javascript remoto-->
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
   <!--Arquivos CSS remotos-->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -34,7 +37,7 @@
   </div>
 
   <!--Formulario de cadastro de processos-->
-  <form class="form" method="POST" action="">
+  <form class="form" method="POST" onsubmit="concatenate_emails()">
     <ul>
       <h2>
         Use esse formulário para cadastrar um novo processo para acompanhamento
@@ -99,7 +102,10 @@
       </li>
 
       <li id="email-destination">
-        <input type="text" class="field-style field-buttons align-none" placeholder="E-mail do destinatário" name="emails" required>
+        <input type="email" class="field-style field-buttons align-none" placeholder="E-mail do destinatário" name="email" required>
+        <button type="button" class="material-icons add_email_fields" onclick="add_field()">add_circle</button>
+        <button type="button" class="material-icons remove_email_fields" onclick="remove_field()">cancel</button>
+        <input type="hidden" name="emails" value="teste">
       </li>
 
       {% csrf_token %}
@@ -111,3 +117,41 @@
     </ul>
   </form>
 </body>
+
+<script type='text/javascript'>
+
+  var i = 1;
+
+  // Funcao para adicionar campos de email:
+  function add_field()
+  {
+    var new_email_field = document.createElement("input");
+    new_email_field.setAttribute("class", "field-style field-full align-none");
+    new_email_field.setAttribute("type", "text");
+    new_email_field.setAttribute("placeholder", "E-mail do destinatário");
+    new_email_field.setAttribute("name", "email");
+    new_email_field.required = true;
+    document.getElementById("email-destination").appendChild(new_email_field);
+    i += 1;
+  }
+
+  // Funcao para remover campos de email:
+  function remove_field()
+  {
+    if (i > 1)
+    {
+      var email_fields = document.getElementById("email-destination");
+      email_fields.removeChild(email_fields.lastChild);
+      i -= 1;
+    }
+  }
+
+  // Funcao para concatenar os emails em uma so string:
+  $('[name=run_script]').click(function()
+  {
+    var inputs = $('[name="email"]');
+    var val = inputs.map((i, input) => input.value).get().join(',');
+    $('[name=emails]').val(val);
+  });
+</script>
+</html>
