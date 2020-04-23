@@ -31,7 +31,7 @@ class Processos(models.Model):
     #emails_7 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
     #emails_8 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
     #emails_9 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #url = models.TextField(default="url", blank = True)
+    url = models.TextField(default="url", blank = True)
     #created_date = models.DateTimeField(default=timezone.now)
     #published_date = models.DateTimeField(blank=True, null=True)
     #emails = MultiEmailField(null=True)
