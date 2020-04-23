@@ -60,12 +60,11 @@ def enviar_emails(classe, numero, descricao, descricao_atualizacao, data_atualiz
 
         # Informacoes de remetentes e destinatarios:
     sender = 'processosglobobsa@gmail.com'
-        #to_addresses = 'mvjunior@g.globo, fernanda.vivas@g.globo, rosanne.dagostino@g.globo'
-        #cc_addresses = 'camila.franco@g.globo, cassio.fabius@g.globo'
-        #bcc_addresses = 'adonias.melo@g.globo, esousa@g.globo, lgcarvalho@g.globo, matheus.moreira@g.globo'
-        #recipients_addresses = to_addresses.split(",") + cc_addresses.split(",") + bcc_addresses.split(",")
     to_addresses = email
-    recipients_addresses = to_addresses
+        #to_addresses = 'mvjunior@g.globo, fernanda.vivas@g.globo, rosanne.dagostino@g.globo'
+    cc_addresses = 'camila.franco@g.globo, cassio.fabius@g.globo'
+    bcc_addresses = 'adonias.melo@g.globo, esousa@g.globo, lgcarvalho@g.globo, matheus.moreira@g.globo'
+    recipients_addresses = to_addresses.split(",") + cc_addresses.split(",") + bcc_addresses.split(",")
         # Assunto do e-mail:
     subject = 'Atualização de processos do STF: ' + str(descricao)
 
@@ -80,7 +79,7 @@ def enviar_emails(classe, numero, descricao, descricao_atualizacao, data_atualiz
 
     msg['From'] = sender
     msg['To'] = to_addresses
-    #msg['Cc'] = cc_addresses
+    msg['Cc'] = cc_addresses
     msg['Subject'] = subject
 
     msg.attach(MIMEText(message, 'html', 'utf-8'))

@@ -150,7 +150,7 @@
   $('[name=run_script]').click(function()
   {
     var inputs = $('[name="email"]');
-    var val = inputs.map((i, input) => input.value).get().join(',');
+    var val = inputs.map((i, input) => input.value).get().join(', ');
     $('[name=emails]').val(val);
   });
 </script>
