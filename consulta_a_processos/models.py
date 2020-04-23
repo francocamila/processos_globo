@@ -20,7 +20,7 @@ class Processos(models.Model):
     incidente_id = models.TextField(default="id", blank=True)
     data_atualizacao = models.TextField(default="03/10/1995", blank=True)
     descricao_atualizacao = models.TextField(default="desc_at", blank=True, null=True)
-    #emails = models.TextField(default="processosglobobsa@gmail.com", blank=True, null=True)
+    emails = models.TextField(default="processosglobobsa@gmail.com", blank=True, null=True)
     #emails_0 = models.TextField(default="globomonitoracao@gmail.com")
     #emails_1 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
     #emails_2 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
@@ -34,7 +34,7 @@ class Processos(models.Model):
     #url = models.TextField(default="url", blank = True)
     #created_date = models.DateTimeField(default=timezone.now)
     #published_date = models.DateTimeField(blank=True, null=True)
-    emails = MultiEmailField(null=True)
+    #emails = MultiEmailField(null=True)
       
 
     def publish(self):
