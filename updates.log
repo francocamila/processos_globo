@@ -5,3 +5,4 @@
 2020-04-09 20:28:36,359 ERROR __main__ Erro durante a atualizacao: 'Series' object has no attribute 'andamento_nome'
 2020-04-09 22:28:45,498 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'Series' object has no attribute 'andamento_data'
 2020-04-14 21:09:07,325 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'NoneType' object has no attribute 'get_text'
+2020-04-23 06:31:11,859 ERROR __main__ Erro durante a consulta e montagem de tabelas: 'NoneType' object has no attribute 'get_text'
