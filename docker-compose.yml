@@ -53,4 +53,4 @@ services:
       - redis
 
 volumes:
-  pg-data:{}
+  pg-data: {}
