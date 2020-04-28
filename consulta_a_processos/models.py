@@ -21,20 +21,7 @@ class Processos(models.Model):
     data_atualizacao = models.TextField(default="03/10/1995", blank=True)
     descricao_atualizacao = models.TextField(default="desc_at", blank=True, null=True)
     emails = models.TextField(default="processosglobobsa@gmail.com", blank=True, null=True)
-    #emails_0 = models.TextField(default="globomonitoracao@gmail.com")
-    #emails_1 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_2 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_3 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_4 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_5 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_6 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_7 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_8 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
-    #emails_9 = models.TextField(default="globomonitoracao@gmail.com", blank=True, null=True)
     url = models.TextField(default="url", blank = True)
-    #created_date = models.DateTimeField(default=timezone.now)
-    #published_date = models.DateTimeField(blank=True, null=True)
-    #emails = MultiEmailField(null=True)
       
 
     def publish(self):

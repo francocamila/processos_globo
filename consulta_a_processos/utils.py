@@ -56,14 +56,13 @@ def enviar_emails(classe, numero, descricao, descricao_atualizacao, data_atualiz
     # Conexao com o servidor do Gmail, utilizando login e senha:
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login('processosglobobsa@gmail.com', 'TVG@bsa#processos')
+    server.login('email@email', 'password')
 
         # Informacoes de remetentes e destinatarios:
-    sender = 'processosglobobsa@gmail.com'
+    sender = 'email@email'
     to_addresses = email
-        #to_addresses = 'mvjunior@g.globo, fernanda.vivas@g.globo, rosanne.dagostino@g.globo'
-    cc_addresses = 'camila.franco@g.globo, cassio.fabius@g.globo'
-    bcc_addresses = 'adonias.melo@g.globo, esousa@g.globo, lgcarvalho@g.globo, matheus.moreira@g.globo'
+    cc_addresses = 'emailcc1@email, emailcc2@email'
+    bcc_addresses = 'emailbcc1@email, emailbcc1@email'
     recipients_addresses = to_addresses.split(",") + cc_addresses.split(",") + bcc_addresses.split(",")
         # Assunto do e-mail:
     subject = 'Atualização de processos do STF: ' + str(descricao)
